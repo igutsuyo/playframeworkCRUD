@@ -1,0 +1,50 @@
+@import models.User
+@import helper._
+@import play.mvc.Http.Request
+
+@(user : User)(implicit request: Request)
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <title>ユーザー削除</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container-header">
+            <h1>登録している内容を削除</h1>
+        </div>
+        <div class="index-table-wrapper">
+            <div class="table-head">
+                    <span class="name-column">名前</span>
+                    <span class="name-column">年齢</span>
+            </div>
+            <ul class="table-body">
+                <li>
+                    <div class="item-data">
+                        @if(user == null) {
+                            <div>ユーザーが見つかりません</div>
+                        }else {
+                        <span class="name-column">@user.getName() </span>
+                        <span class="name-column">@user.getAge()歳</span>
+                    </div>
+                    <div class="item-menu">
+                        @helper.form(action = routes.UserController.delete(user.getId())){
+                        @CSRF.formField
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="submit" value="削除">
+                        }
+                    </div>
+                </li>
+            </ul>
+        </div>
+                        }
+        <a href="@routes.UserController.index" class="cancel-button">一覧に戻る</a>
+    </div>
+</body>
+
+</html>

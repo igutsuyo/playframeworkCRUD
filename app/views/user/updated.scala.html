@@ -1,0 +1,36 @@
+@(user: User)
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <title>編集完了</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container-header">
+        <h1>編集完了</h1>
+    </div>
+    <div class="index-table-wrapper">
+        <div class="table-head">
+            <span class="name-column">名前</span><span class="name-column">年齢</span>
+        </div>
+        <ul class="table-body">
+            <li>
+                <div class="item-data">
+                        @if(user == null) {
+                            <div>ユーザーがいません</div>
+                        }else {
+                            <span class="name-column">@user.getName() </span>
+                            <span class="name-column">@user.getAge()歳</span>
+                        }
+                </div>
+            </li>
+        </ul>
+        <a href="@routes.UserController.index" class="cancel-button">一覧に戻る</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+name = 名前
+age = 年齢
+
+error.reguired =　※必須項目です
+error.max =　
+error.min =　最小値は{0}です
+error.maxLength =　最大値は{0}文字です
+error.minLength = 最小値は{0}文字です

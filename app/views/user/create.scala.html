@@ -1,0 +1,35 @@
+@import play.data.Form
+@import controllers.UserForm
+@import play.i18n.Messages
+@import helper._
+@import play.mvc.Http.Request
+
+@(form: Form[UserForm])(implicit request: Request, messages: Messages)
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <title>ユーザー登録</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container-header">
+        <h1>新規登録</h1>
+        </div>
+        <div class="item-form-wrapper">
+            @helper.form(action = routes.UserController.create()){
+            @CSRF.formField
+            @helper.inputText(form("name"), Symbol("required") -> "null", Symbol("_showConstraints") -> false)
+            @helper.inputText(form("age"), Symbol("type") -> "number",   Symbol("min") -> "0" , Symbol("max") -> "150" , Symbol("required") -> "null", Symbol("_showConstraints") -> false)
+            <div class="button-form">
+                <input type="submit" value="作成する">
+                <input type="reset" value="リセット">
+            </div>
+            }
+            <a href="@routes.UserController.index" class="cancel-button">一覧に戻る</a>
+        </div>
+    </div>
+</body>
+</html>

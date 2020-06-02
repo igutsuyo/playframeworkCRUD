@@ -1,0 +1,42 @@
+@import java.util.List
+@import models.User
+
+@(users: List[User])
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <title>ユーザー一覧</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container-header">
+            <h1>ユーザー一覧</h1>
+            <a href="@routes.UserController.createPage"  class="new-button">新規登録</a>
+        </div>
+        <div class="index-table-wrapper">
+            <div class="table-head">
+                @if(users.isEmpty()) {
+                    <div>ユーザーが見つかりません</div>
+                }else {
+                    <span class="id-column">ID</span><span>名前</span>
+            </div>
+            <ul class="table-body">
+                @for(user <- users) {
+                    <li>
+                        <div class="item-data">
+                        <span class="id-column">@user.getId()</span>
+                        <span class="name-link-column"><a href="@routes.UserController.detail(user.getId())">@user.getName()</a></span>
+                        </div>
+                    </li>
+                }
+            </ul>
+                }
+        </div>
+    </div>
+</body>
+</html>
