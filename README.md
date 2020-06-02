@@ -1,2 +1,2 @@
-# playframeworkCRUD
-# playframeworkでのCRUD実装です。SQLはMariaDBを使用
+playframeworkCRUD
+playframeworkでのCRUD実装です。SQLはMariaDBを使用
